@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Breadcrumb的样式 -->
+    <nav aria-label="breadcrumb" style="margin-top: 1em">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{% url 'article:article_list' %}?search={{ search }}">最新</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}">最热</a>
+            </li>
+        </ol>
+    </nav>
+
+    <!-- 搜索框 -->
+    <div class="row">
+        <div class="col-auto mr-auto">
+            <form class="form-inline">
+                <label class="sr-only">content</label>
+                <input type="text" class="form-control mb-2 mr-sm-2" name="search" placeholder="搜索文章..." required>
+            </form>
+        </div>
+    </div>
+
+    <!-- 搜索完成后提示语 -->
+    {% if search %}
+        {% if page_of_articles %}
+            <h4><span style="color: red;">{{ search }}</span>的搜索结果如下</h4>
+            <hr>
+        {% else %}
+            <h4>暂无<span style="color: red;">{{ search }}</span>有关的文章。</h4>
+            <hr>
+        {% endif %}
+    {% endif %}
+
+
+
+    <div class="row mt-2">
+        {% for article in page_of_articles %}
+            <div class="col-4 h-100">
+                <div class="card h-100">
+                    <h4 class="card-header">{{ article.title }}</h4>
+                    <div class="card-body">
+                        <p class="card-text">{{ article.content | slice:'100' }}...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'article:article_detail' article.id %}" class="btn btn-primary">阅读文本</a>
+
+                        <!-- 阅读量 -->
+                        <span>
+                            <small class="col align-self-end" style="color: gray">
+                                浏览：{{ article.total_views }}
+                            </small>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="paginator row">
+        <div class="m-auto">
+            <span class="step-links">
+                {% if page_of_articles.has_previous %}
+                    <a href="?page=1" class="btn btn-success">
+                        &laquo;1
+                    </a>
+                    <span>...</span>
+                    <a href="?page={{ page_of_articles.previous_page_number }}" class="btn btn-secondary">
+                        {{ page_of_articles.previous_page_number }}
+                    </a>
+                {% endif %}
+
+
+                <span class="current btn btn-danger btn-lg">
+                    {{ page_of_articles.number }}
+                </span>
+
+                {% if page_of_articles.has_next %}
+                    <a href="?page={{ page_of_articles.next_page_number }}" class="btn btn-secondary">
+                        {{ page_of_articles.next_page_number }}
+                    </a>
+                    <span>...</span>
+                    <a href="?page={{ page_of_articles.paginator.num_pages }}" class="btn btn-success">
+                        {{ page_of_articles.paginator.num_pages }} &raquo;
+                    </a>
+                {% endif %}
+
+            </span>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+</script>
+{% endblock %}
+
