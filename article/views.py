@@ -42,18 +42,23 @@ def article_list(request):
 
     search = request.GET.get('search')
     order = request.GET.get('order')
+    column = request.GET.get('column')
+
+    # 初始化查询集
+    articles = Article.objects.all()
 
     if search:
 
         # 根据GET请求中的查询条件，返回不同的排序对象
         if order == 'total_views':
             # articles = Article.objects.all().order_by('-total_views')
-            articles = Article.objects.filter(
+            articles = articles.filter(
                 Q(title__icontains=search)  |
-                Q(content__icontains=search)
+                Q(content__icontains=search)  |
+                Q()
             ).order_by('-total_views')
         else:
-            articles = Article.objects.filter(
+            articles = articles.filter(
                 Q(title__icontains=search) |
                 Q(content__icontains=search)
             )
@@ -66,6 +71,10 @@ def article_list(request):
         else:
             articles = Article.objects.all()
 
+    if column is not None and column.isdigit():
+        articles = articles.filter(column=column)
+
+
     paginator = Paginator(articles, settings.ARTICLE_OF_PAGE)
     page = request.GET.get('page', 1)
     page_of_articles = paginator.get_page(page)
@@ -74,6 +83,7 @@ def article_list(request):
     context['page_of_articles'] = page_of_articles
     context['order'] = order  # 提供给翻页
     context['search'] = search
+    context['column'] = column
     return render(request, 'article/list.html', context)
 
 

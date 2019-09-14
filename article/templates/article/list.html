@@ -13,10 +13,10 @@
     <nav aria-label="breadcrumb" style="margin-top: 1em">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{% url 'article:article_list' %}?search={{ search }}">最新</a>
+                <a href="{% url 'article:article_list' %}?search={{ search }}&column={{ column }}">最新</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}">最热</a>
+                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}&column={{ column }}">最热</a>
             </li>
         </ol>
     </nav>
@@ -70,19 +70,20 @@
             <div class="col-12">
                 <!-- 栏目 -->
                 {% if article.column %}
-                    <button type="button"
-                            class="btn btn-sm mb-2
-                                {% if article.column.title == 'Django' %}
-                                    btn-success
-                                {% elif article.column.title == 'Java' %}
-                                    btn-danger
-                                {% elif article.column.title == 'HTML' %}
-                                    btn-warning
-                                {% endif %}
-                            "
+                    <a role="button"
+                       href="{% url 'article:article_list' %}?column={{ article.column.id }}"
+                        class="btn btn-sm mb-2
+                            {% if article.column.title == 'Django' %}
+                                btn-success
+                            {% elif article.column.title == 'Java' %}
+                                btn-danger
+                            {% elif article.column.title == 'HTML' %}
+                                btn-warning
+                            {% endif %}
+                        "
                     >
                         {{ article.column }}
-                    </button>
+                    </a>
                 {% endif %}
 
                 <!-- 标题 -->
