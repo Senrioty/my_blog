@@ -66,8 +66,15 @@
 {#                </div>#}
 {#            </div>#}
 
+            <!-- 缩略图 -->
+            {% if article.avatar %}
+                <div class="col-3">
+                    <img src="{{ MEDIA_URL }}{{ article.avatar }}" alt="avatar" style="max-width: 100%; border-radius: 20px">
+                </div>
+            {% endif %}
+
             <!-- 列表的形式 -->
-            <div class="col-12">
+            <div class="col">
                 <!-- 栏目 -->
                 {% if article.column %}
                     <a role="button"
@@ -124,10 +131,9 @@
                         {{ article.updated_time | date:'Y-m-d' }} 更新
                     </span>
                 </p>
-                <hr>
-
             </div>
 
+        <hr style="width: 100%">
         {% endfor %}
     </div>
 
@@ -136,11 +142,13 @@
         <div class="m-auto">
             <span class="step-links">
                 {% if page_of_articles.has_previous %}
-                    <a href="?page=1&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-success">
+                    <a href="?page=1&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}"
+                       class="btn btn-success">
                         &laquo;1
                     </a>
                     <span>...</span>
-                    <a href="?page={{ page_of_articles.previous_page_number }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-secondary">
+                    <a href="?page={{ page_of_articles.previous_page_number }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}"
+                       class="btn btn-secondary">
                         {{ page_of_articles.previous_page_number }}
                     </a>
                 {% endif %}
@@ -151,11 +159,13 @@
                 </span>
 
                 {% if page_of_articles.has_next %}
-                    <a href="?page={{ page_of_articles.next_page_number }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-secondary">
+                    <a href="?page={{ page_of_articles.next_page_number }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}"
+                       class="btn btn-secondary">
                         {{ page_of_articles.next_page_number }}
                     </a>
                     <span>...</span>
-                    <a href="?page={{ page_of_articles.paginator.num_pages }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-success">
+                    <a href="?page={{ page_of_articles.paginator.num_pages }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}"
+                       class="btn btn-success">
                         {{ page_of_articles.paginator.num_pages }} &raquo;
                     </a>
                 {% endif %}

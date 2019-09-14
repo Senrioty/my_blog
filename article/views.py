@@ -73,7 +73,7 @@ def article_list(request):
             articles = Article.objects.all()
 
     # isdigit：检测字符串是否只由数字组成
-    if column != 'None' and column.isdigit():
+    if column is not None and column.isdigit():
         articles = articles.filter(column=column)
 
     # tag的过滤
@@ -123,7 +123,7 @@ def article_detail(request, id):
 
 def article_create(request):
     if request.method == 'POST':
-        article_form = ArticleForm(request.POST)
+        article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             new_article = article_form.save(commit=False)
             new_article.author = User.objects.get(id=request.user.id)
@@ -134,7 +134,7 @@ def article_create(request):
 
             new_article.save()
 
-            # Without this next line the tags won't be saved（因为前面用了save(commit=False)，并且models有多对多关系）
+            # Without this next line the tags won't be saved（因为前面用了save(commit=False)，并且models有多对多关系），保存标签
             article_form.save_m2m()
 
             return redirect("article:article_list")
@@ -184,8 +184,12 @@ def article_update(request, id):
 
             # 处理标签
             if request.POST['tags'] != 'none':
-                # 这个设置方法需要查看api
+                # 这个设置方法需要查看api,tags.set()是如何将序列分隔并解包的
                 article.tags.set(*request.POST.get('tags').split(','), clear=True)
+
+            # 处理缩略图
+            if request.FILES.get('avatar'):
+                article.avatar = request.FILES.get('avatar')
 
             article.save()
             return redirect('article:article_detail', id=id)
