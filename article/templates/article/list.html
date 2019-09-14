@@ -45,25 +45,78 @@
 
 
     <div class="row mt-2">
-        {% for article in page_of_articles %}
-            <div class="col-4 h-100">
-                <div class="card h-100">
-                    <h4 class="card-header">{{ article.title }}</h4>
-                    <div class="card-body">
-                        <p class="card-text">{{ article.content | slice:'100' }}...</p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="{% url 'article:article_detail' article.id %}" class="btn btn-primary">阅读文本</a>
+        {% for article in page_of_articles  %}
+            <!-- 卡片的形式 -->
+{#            <div class="col-4 h-100">#}
+{#                <div class="card h-100">#}
+{#                    <h4 class="card-header">{{ article.title }}</h4>#}
+{#                    <div class="card-body">#}
+{#                        <p class="card-text">{{ article.content | slice:'100' }}...</p>#}
+{#                    </div>#}
+{#                    <div class="card-footer">#}
+{#                        <a href="{% url 'article:article_detail' article.id %}" class="btn btn-primary">阅读文本</a>#}
+{##}
+{#                        <!-- 阅读量 -->#}
+{#                        <span>#}
+{#                            <small class="col align-self-end" style="color: gray">#}
+{#                                浏览：{{ article.total_views }}#}
+{#                            </small>#}
+{#                        </span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 
-                        <!-- 阅读量 -->
-                        <span>
-                            <small class="col align-self-end" style="color: gray">
-                                浏览：{{ article.total_views }}
-                            </small>
-                        </span>
-                    </div>
+            <!-- 列表的形式 -->
+            <div class="col-12">
+                <!-- 栏目 -->
+                {% if article.column %}
+                    <button type="button"
+                            class="btn btn-sm mb-2
+                                {% if article.column.title == 'Django' %}
+                                    btn-success
+                                {% elif article.column.title == 'Java' %}
+                                    btn-danger
+                                {% elif article.column.title == 'HTML' %}
+                                    btn-warning
+                                {% endif %}
+                            "
+                    >
+                        {{ article.column }}
+                    </button>
+                {% endif %}
+
+                <!-- 标题 -->
+                <h4>
+                    <b>
+                        <a href="{% url 'article:article_detail' article.id %}" style="color: black">
+                            {{ article.title }}
+                        </a>
+                    </b>
+                </h4>
+
+                <!-- 摘要 -->
+                <div>
+                    <p style="color: gray">
+                        {{ article.content | slice:'100' }}...
+                    </p>
                 </div>
+
+                <!-- 注脚 -->
+                <p>
+                    <span style="color: green">
+                        {{ article.total_views }} 浏览&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span style="color: blue">
+                        {{ article.created_time | date:'Y-m-d' }} 发布&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span style="color: darkred">
+                        {{ article.updated_time | date:'Y-m-d' }} 更新
+                    </span>
+                </p>
+                <hr>
+
             </div>
+
         {% endfor %}
     </div>
 

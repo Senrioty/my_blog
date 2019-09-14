@@ -5,8 +5,37 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator
 from django.conf import settings
 from django.db.models import Q
-from .models import Article
+from django.views.generic import ListView,DetailView
+from .models import Article,ArticleColumn
 from .form import ArticleForm
+
+
+# 类视图
+class ArticleListView(ListView):
+    # 上下文的名称
+    context_object_name = 'article'
+    # 查询集
+    queryset = Article.objects.all()
+    # 模板位置
+    template_name = 'article/list.html'
+
+    # def get_queryset(self):
+    #     queryset = Article.objects.filter(title='Python')
+    #     return queryset
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        # 获取原有的上下文
+        context = super().get_context_data(**kwargs)
+        # 增加新上下文
+        context['order'] = 'total_views'
+        return context
+
+
+class ArticleDetailView(DetailView):
+    queryset = Article.objects.all()
+    context_object_name = 'article'
+    template_name = 'article/detail.html'
+
 
 # Create your views here.
 def article_list(request):
@@ -80,6 +109,11 @@ def article_create(request):
         if article_form.is_valid():
             new_article = article_form.save(commit=False)
             new_article.author = User.objects.get(id=request.user.id)
+
+            # 保存栏目
+            if request.POST['column'] != 'none':
+                new_article.column = ArticleColumn.objects.get(id=request.POST.get('column'))
+
             new_article.save()
             return redirect("article:article_list")
         else:
@@ -88,6 +122,7 @@ def article_create(request):
         article_form = ArticleForm()
         context = {}
         context['article_form'] = article_form
+        context['columns'] = ArticleColumn.objects.all()
         return render(request, 'article/create.html', context)
 
 
@@ -118,6 +153,13 @@ def article_update(request, id):
         if article_form.is_valid():
             article.title = article_form.cleaned_data['title']
             article.content = article_form.cleaned_data['content']
+
+            # 处理栏目
+            if request.POST['column'] != 'none':
+                article.column = ArticleColumn.objects.get(id=request.POST['column'])
+            else:
+                article.column = None
+
             article.save()
             return redirect('article:article_detail', id=id)
         else:
@@ -127,4 +169,5 @@ def article_update(request, id):
         context = {}
         context['article'] = article
         context['article_form'] = article_form
+        context['columns'] = ArticleColumn.objects.all()
         return render(request, 'article/update.html', context)
