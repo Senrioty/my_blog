@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.views.generic import ListView,DetailView
 from .models import Article,ArticleColumn
 from .form import ArticleForm
+from comment.models import Comment
 
 
 # 类视图
@@ -102,6 +103,9 @@ def article_detail(request, id):
     article.total_views += 1
     article.save(update_fields=['total_views'])  # 指定只更新total_views字段，优化执行效率
 
+    # 取出文章评论
+    comments = Comment.objects.filter(article=id)
+
     # 将markdown语法渲染成html样式
     md = markdown.Markdown(
         extensions=[
@@ -118,6 +122,7 @@ def article_detail(request, id):
     context = {}
     context['article'] = article
     context['toc'] = md.toc
+    context['comments'] = comments
     return render(request, 'article/detail.html', context)
 
 

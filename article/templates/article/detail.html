@@ -38,9 +38,59 @@
                     浏览：{{ article.total_views }}
                 </div>
             </div>
-            <p>{{ article.content | safe }}</p>
+
+            <div class="col-12">
+                <p>{{ article.content | safe }}</p>
+            </div>
+
+            <!-- 发表评论 -->
+            <hr>
+            {% if user.is_authenticated %}
+                <div>
+                    <form action="{% url 'comment:post_comment' article.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="from-group">
+                            <label for="content">
+                                <strong>
+                                    我也要发言：
+                                </strong>
+                            </label>
+
+                            <textarea name="content" id="content" rows="2" type="text" class="form-control"></textarea>
+                        </div>
+
+                        <button style="margin-top: 1em" type="submit" class="btn btn-primary">发送</button>
+                    </form>
+                </div>
+                <br>
+            {% else %}
+                <br>
+                <h5 class="row justify-content-center">
+                    请<a href="{% url 'userprofile:user_login' %}">登录</a>后回复
+                </h5>
+                <br>
+            {% endif %}
+
+
+            <!-- 显示评论 -->
+            <h4>共有{{ comments.count }}条评论</h4>
+            <div>
+                {% for comment in comments %}
+                    <hr>
+                    <p>
+                        <strong style="color:pink">
+                            {{ comment.user }}
+                        </strong> 于
+                        <span style="color: green">
+                            {{ comment.created_time | date:"Y-m-d h:i:s" }}
+                        </span> 时说:
+                    </p>
+                    <pre style="font-family: inherit; font-size: 1em">{{ comment.content }}</pre>
+                {% endfor %}
+            </div>
         </div>
 
+        <!-- 目录 -->
         <div class="col-3 mt-3">
             <h4 style="margin-top: 1em"><strong>目录</strong></h4>
             <hr>
@@ -48,6 +98,7 @@
                 {{ toc | safe }}
             </div>
         </div>
+
     </div>
 </div>
 

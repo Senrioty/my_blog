@@ -4,6 +4,7 @@ from taggit.managers import TaggableManager
 from PIL import Image
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
+from django.urls import reverse
 
 # Create your models here.
 class ArticleColumn(models.Model):
@@ -63,3 +64,7 @@ class Article(models.Model):
     #         resized_image.save(self.avatar.path)  # 覆盖掉原始图片
     #
     #     return article
+
+
+    def get_absolute_url(self):
+        return reverse('article:article_detail', args=[self.id])
