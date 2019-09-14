@@ -43,6 +43,7 @@ def article_list(request):
     search = request.GET.get('search')
     order = request.GET.get('order')
     column = request.GET.get('column')
+    tag = request.GET.get('tag')
 
     # 初始化查询集
     articles = Article.objects.all()
@@ -71,8 +72,14 @@ def article_list(request):
         else:
             articles = Article.objects.all()
 
-    if column is not None and column.isdigit():
+    # isdigit：检测字符串是否只由数字组成
+    if column != 'None' and column.isdigit():
         articles = articles.filter(column=column)
+
+    # tag的过滤
+    if tag and tag != 'None':
+        # tags__name__in:在tags字段中过滤name为tag的数据条目
+        articles = articles.filter(tags__name__in=[tag])
 
 
     paginator = Paginator(articles, settings.ARTICLE_OF_PAGE)
@@ -84,6 +91,7 @@ def article_list(request):
     context['order'] = order  # 提供给翻页
     context['search'] = search
     context['column'] = column
+    context['tag'] = tag
     return render(request, 'article/list.html', context)
 
 
@@ -125,6 +133,10 @@ def article_create(request):
                 new_article.column = ArticleColumn.objects.get(id=request.POST.get('column'))
 
             new_article.save()
+
+            # Without this next line the tags won't be saved（因为前面用了save(commit=False)，并且models有多对多关系）
+            article_form.save_m2m()
+
             return redirect("article:article_list")
         else:
             return HttpResponse("表单内容有误，请重新填写。")
@@ -170,6 +182,11 @@ def article_update(request, id):
             else:
                 article.column = None
 
+            # 处理标签
+            if request.POST['tags'] != 'none':
+                # 这个设置方法需要查看api
+                article.tags.set(*request.POST.get('tags').split(','), clear=True)
+
             article.save()
             return redirect('article:article_detail', id=id)
         else:
@@ -180,4 +197,7 @@ def article_update(request, id):
         context['article'] = article
         context['article_form'] = article_form
         context['columns'] = ArticleColumn.objects.all()
+
+        # 需要拼接tags，返回给前端页面使用
+        context['tags'] = ','.join(x for x in article.tags.names())
         return render(request, 'article/update.html', context)

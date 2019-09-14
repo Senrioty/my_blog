@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from taggit.managers import TaggableManager
 
 # Create your models here.
 class ArticleColumn(models.Model):
@@ -20,6 +21,9 @@ class Article(models.Model):
 
     # PositiveIntegerField 是用于存储正整数的字段
     total_views = models.PositiveIntegerField(default=0)
+
+    # 应用第三方库django-taggit实现标签功能,这是多对多
+    tags = TaggableManager(blank=True)
 
     class Meta:
         ordering = ['-created_time']

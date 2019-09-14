@@ -13,10 +13,10 @@
     <nav aria-label="breadcrumb" style="margin-top: 1em">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{% url 'article:article_list' %}?search={{ search }}&column={{ column }}">最新</a>
+                <a href="{% url 'article:article_list' %}?search={{ search }}&column={{ column }}&tag={{ tag }}">最新</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}&column={{ column }}">最热</a>
+                <a href="{% url 'article:article_list' %}?order=total_views&search={{ search }}&column={{ column }}&tag={{ tag }}">最热</a>
             </li>
         </ol>
     </nav>
@@ -71,7 +71,7 @@
                 <!-- 栏目 -->
                 {% if article.column %}
                     <a role="button"
-                       href="{% url 'article:article_list' %}?column={{ article.column.id }}"
+                       href="{% url 'article:article_list' %}?column={{ article.column.id }}&tag={{ tag }}"
                         class="btn btn-sm mb-2
                             {% if article.column.title == 'Django' %}
                                 btn-success
@@ -86,6 +86,16 @@
                     </a>
                 {% endif %}
 
+                <!-- 标签 badge badge-secondary这个是bootstrap的徽章样式-->
+                <span>
+                    {% for tag in article.tags.all %}
+                        <a href="{% url 'article:article_list' %}?tag={{ tag }}" class="badge badge-secondary">{{ tag.name }}</a>
+                    {% endfor %}
+                    
+                </span>
+            
+            
+                
                 <!-- 标题 -->
                 <h4>
                     <b>
@@ -126,11 +136,11 @@
         <div class="m-auto">
             <span class="step-links">
                 {% if page_of_articles.has_previous %}
-                    <a href="?page=1" class="btn btn-success">
+                    <a href="?page=1&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-success">
                         &laquo;1
                     </a>
                     <span>...</span>
-                    <a href="?page={{ page_of_articles.previous_page_number }}" class="btn btn-secondary">
+                    <a href="?page={{ page_of_articles.previous_page_number }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-secondary">
                         {{ page_of_articles.previous_page_number }}
                     </a>
                 {% endif %}
@@ -141,11 +151,11 @@
                 </span>
 
                 {% if page_of_articles.has_next %}
-                    <a href="?page={{ page_of_articles.next_page_number }}" class="btn btn-secondary">
+                    <a href="?page={{ page_of_articles.next_page_number }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-secondary">
                         {{ page_of_articles.next_page_number }}
                     </a>
                     <span>...</span>
-                    <a href="?page={{ page_of_articles.paginator.num_pages }}" class="btn btn-success">
+                    <a href="?page={{ page_of_articles.paginator.num_pages }}&order={{ order }}&search={{ search }}&column={{ column }}&tag={{ tag }}" class="btn btn-success">
                         {{ page_of_articles.paginator.num_pages }} &raquo;
                     </a>
                 {% endif %}
