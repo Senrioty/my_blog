@@ -9,6 +9,7 @@ from django.views.generic import ListView,DetailView
 from .models import Article,ArticleColumn
 from .form import ArticleForm
 from comment.models import Comment
+from comment.form import CommentForm
 
 
 # 类视图
@@ -106,6 +107,9 @@ def article_detail(request, id):
     # 取出文章评论
     comments = Comment.objects.filter(article=id)
 
+    # 返回页面comment_form，前台也可用ckeditor
+    comment_form = CommentForm()
+
     # 将markdown语法渲染成html样式
     md = markdown.Markdown(
         extensions=[
@@ -123,6 +127,7 @@ def article_detail(request, id):
     context['article'] = article
     context['toc'] = md.toc
     context['comments'] = comments
+    context['comment_form'] = comment_form
     return render(request, 'article/detail.html', context)
 
 
