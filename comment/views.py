@@ -4,10 +4,12 @@ from django.http import HttpResponse
 
 from article.models import Article
 from .form import CommentForm
+from .models import Comment
 
 
 # Create your views here.
 
+# 一级评论
 @login_required(login_url='userprofile/login')
 def post_comment(request, article_id):
     article = get_object_or_404(Article, id=article_id)
@@ -25,3 +27,46 @@ def post_comment(request, article_id):
             return redirect(article)
         else:
             return HttpResponse("表单内容有误，请重新填写")
+
+# 多级评论
+@login_required(login_url='userprofile/login')
+def post_comment(request, article_id, parent_comment_id=None):
+    article = get_object_or_404(Article, id=article_id)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.article = article
+            new_comment.user = request.user
+
+            # 二级评论
+            if parent_comment_id:
+                parent_comment = Comment.objects.get(id=parent_comment_id)
+
+                # 若回复层级超过耳机，则转换为二级
+                new_comment.parent_id = parent_comment.get_root().id
+
+                # 被回复人
+                new_comment.reply_to = parent_comment.user
+                new_comment.save()
+                return HttpResponse('200 OK')
+
+            new_comment.save()
+
+            # 当其参数是一个Model对象时，会自动调用这个Model对象的get_absolute_url()方法
+            return redirect(article)
+        else:
+            return HttpResponse("表单内容有误，请重新填写")
+
+    elif request.method == 'GET':
+        comment_form = CommentForm()
+        context = {}
+        context['comment_form'] = comment_form
+        context['article_id'] = article_id
+        context['parent_comment_id'] = parent_comment_id
+        return render(request, 'comment/reply.html', context)
+
+    else:
+        return HttpResponse("仅接受GET/POST请求")
