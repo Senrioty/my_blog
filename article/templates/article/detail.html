@@ -99,47 +99,67 @@
         </div>
 
         <!-- 目录 -->
-        <div class="col-3 mt-3">
-            <h4 style="margin-top: 1em"><strong>目录</strong></h4>
-            <hr>
-            <div>
-                {{ toc | safe }}
+        <div id="sidebar" class="siderbar">
+            <div class="siderbar__inner">
+                <h4 style="margin-top: 1em"><strong>目录</strong></h4>
+                <hr>
+                <div>
+                    {{ toc | safe }}
+                </div>
             </div>
         </div>
 
     </div>
 </div>
 
-<script>
+<style>
+.sidebar{
+    will-change: min-height;
+}
 
-    {# 这种方式不能防止csrf攻击 #}
-    function confirm_delete() {
-        layer.open({
-            title:"确认删除",
-            content:"确认删除这篇文章吗?",
-            yes:function (index, layero) {
-                location.href='{% url "article:article_delete" article.id %}'
-            },
-        })
-    }
-
-    function confirm_safe_delete() {
-        layer.open({
-            title:"确认删除",
-            content:"确认删除这篇文章吗?",
-            yes:function (index, layero) {
-                $('form#safe_delete button').click();
-                layer.close(index);
-            },
-        })
-    }
-
-</script>
+.sidebar__inner{
+    transform: translate(0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: position, transform;
+}
+</style>
 
 {% endblock content%}
 
 {% block script %}
-    <script>
-        $(".django-ckeditor-widget").removeAttr('style')
+    <script src="{% static 'sticky_sidebar/jquery.sticky-sidebar.min.js' %}"></script>
+    <script type="text/javascript">
+        // 设置粘性侧边栏
+        $('#sidebar').stickySidebar({
+            topSpacing: 20,
+            bottomSpacing: 20,
+        });
+
+        // 设置ckeditor自适应
+        $(".django-ckeditor-widget").removeAttr('style');
+
+        {# 这种方式不能防止csrf攻击 #}
+        function confirm_delete() {
+            layer.open({
+                title:"确认删除",
+                content:"确认删除这篇文章吗?",
+                yes:function (index, layero) {
+                    location.href='{% url "article:article_delete" article.id %}'
+                },
+            })
+        }
+
+        function confirm_safe_delete() {
+            layer.open({
+                title:"确认删除",
+                content:"确认删除这篇文章吗?",
+                yes:function (index, layero) {
+                    $('form#safe_delete button').click();
+                    layer.close(index);
+                },
+            })
+        }
     </script>
+
+
 {% endblock %}
