@@ -41,8 +41,13 @@
                 type: 'POST',
                 data: {content:content},
                 success: function (e) {
-                    if (e === '200 OK'){
+                    if (e.code === '200 OK'){
                         parent.location.reload();
+
+                        {#console.log(e.new_comment_id)#}
+                        {##}
+                        {#// 调用父类的函数post_reply_and_show_it()#}
+                        {#parent.post_reply_and_show_it(e.new_comment_id);#}
                     }
                 }
             })

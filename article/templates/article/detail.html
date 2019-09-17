@@ -106,6 +106,7 @@
                                     {% else %}
                                     col-12
                                     {% endif %}"
+                             id="comment_elem_{{ comment.id }}"
                         >
 
                             <hr>
@@ -247,6 +248,20 @@
             }
 
             $(modal_id).modal('show');
+        }
+
+        function post_reply_and_show_it(new_comment_id) {
+            console.log("这是父页面"+new_comment_id)
+            let next_url = '{% url 'article:article_detail' article.id %}';
+
+            // 处理next_url，因为可能最后一个字符是/，但是我们要加锚点的话，不需要/
+            // charAt从0~length-1
+            next_url = next_url.charAt(next_url.length-1) === '/' ? next_url.slice(0, -1) : next_url;
+
+            next_url = "http://127.0.0.1:8000" + next_url + "#comment_elem_" + new_comment_id;
+
+            console.log(next_url)
+            window.location.href= next_url
         }
 
 
