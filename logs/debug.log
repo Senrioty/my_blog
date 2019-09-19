@@ -1,0 +1,372 @@
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.001) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.002) SELECT COUNT(*) AS "__count" FROM "article_article"; args=()
+(0.000) SELECT "article_article"."id", "article_article"."author_id", "article_article"."title", "article_article"."content", "article_article"."column_id", "article_article"."avatar", "article_article"."created_time", "article_article"."updated_time", "article_article"."total_views" FROM "article_article" ORDER BY "article_article"."created_time" DESC LIMIT 3; args=()
+(0.000) SELECT "article_articlecolumn"."id", "article_articlecolumn"."title", "article_articlecolumn"."created" FROM "article_articlecolumn" WHERE "article_articlecolumn"."id" = 1; args=(1,)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."app_label" = 'article' AND "django_content_type"."model" = 'article'); args=('article', 'article')
+(0.000) SELECT DISTINCT "taggit_tag"."id", "taggit_tag"."name", "taggit_tag"."slug" FROM "taggit_tag" INNER JOIN "taggit_taggeditem" ON ("taggit_tag"."id" = "taggit_taggeditem"."tag_id") WHERE ("taggit_taggeditem"."content_type_id" = 7 AND "taggit_taggeditem"."object_id" = 13); args=(7, 13)
+(0.001) SELECT COUNT(*) AS "__count" FROM "comment_comment" WHERE "comment_comment"."article_id" = 13; args=(13,)
+(0.000) SELECT "article_articlecolumn"."id", "article_articlecolumn"."title", "article_articlecolumn"."created" FROM "article_articlecolumn" WHERE "article_articlecolumn"."id" = 1; args=(1,)
+(0.001) SELECT DISTINCT "taggit_tag"."id", "taggit_tag"."name", "taggit_tag"."slug" FROM "taggit_tag" INNER JOIN "taggit_taggeditem" ON ("taggit_tag"."id" = "taggit_taggeditem"."tag_id") WHERE ("taggit_taggeditem"."content_type_id" = 7 AND "taggit_taggeditem"."object_id" = 12); args=(7, 12)
+(0.000) SELECT COUNT(*) AS "__count" FROM "comment_comment" WHERE "comment_comment"."article_id" = 12; args=(12,)
+(0.001) SELECT "article_articlecolumn"."id", "article_articlecolumn"."title", "article_articlecolumn"."created" FROM "article_articlecolumn" WHERE "article_articlecolumn"."id" = 2; args=(2,)
+(0.001) SELECT DISTINCT "taggit_tag"."id", "taggit_tag"."name", "taggit_tag"."slug" FROM "taggit_tag" INNER JOIN "taggit_taggeditem" ON ("taggit_tag"."id" = "taggit_taggeditem"."tag_id") WHERE ("taggit_taggeditem"."content_type_id" = 7 AND "taggit_taggeditem"."object_id" = 11); args=(7, 11)
+(0.000) SELECT COUNT(*) AS "__count" FROM "comment_comment" WHERE "comment_comment"."article_id" = 11; args=(11,)
+"GET / HTTP/1.1" 200 13091
+(0.003) SELECT COUNT(*) AS "__count" FROM "article_article"; args=()
+(0.000) SELECT "article_article"."id", "article_article"."author_id", "article_article"."title", "article_article"."content", "article_article"."column_id", "article_article"."avatar", "article_article"."created_time", "article_article"."updated_time", "article_article"."total_views" FROM "article_article" ORDER BY "article_article"."created_time" DESC LIMIT 3; args=()
+(0.001) SELECT "article_articlecolumn"."id", "article_articlecolumn"."title", "article_articlecolumn"."created" FROM "article_articlecolumn" WHERE "article_articlecolumn"."id" = 1; args=(1,)
+(0.000) SELECT DISTINCT "taggit_tag"."id", "taggit_tag"."name", "taggit_tag"."slug" FROM "taggit_tag" INNER JOIN "taggit_taggeditem" ON ("taggit_tag"."id" = "taggit_taggeditem"."tag_id") WHERE ("taggit_taggeditem"."content_type_id" = 7 AND "taggit_taggeditem"."object_id" = 13); args=(7, 13)
+(0.000) SELECT COUNT(*) AS "__count" FROM "comment_comment" WHERE "comment_comment"."article_id" = 13; args=(13,)
+(0.000) SELECT "article_articlecolumn"."id", "article_articlecolumn"."title", "article_articlecolumn"."created" FROM "article_articlecolumn" WHERE "article_articlecolumn"."id" = 1; args=(1,)
+(0.001) SELECT DISTINCT "taggit_tag"."id", "taggit_tag"."name", "taggit_tag"."slug" FROM "taggit_tag" INNER JOIN "taggit_taggeditem" ON ("taggit_tag"."id" = "taggit_taggeditem"."tag_id") WHERE ("taggit_taggeditem"."content_type_id" = 7 AND "taggit_taggeditem"."object_id" = 12); args=(7, 12)
+(0.001) SELECT COUNT(*) AS "__count" FROM "comment_comment" WHERE "comment_comment"."article_id" = 12; args=(12,)
+(0.001) SELECT "article_articlecolumn"."id", "article_articlecolumn"."title", "article_articlecolumn"."created" FROM "article_articlecolumn" WHERE "article_articlecolumn"."id" = 2; args=(2,)
+(0.000) SELECT DISTINCT "taggit_tag"."id", "taggit_tag"."name", "taggit_tag"."slug" FROM "taggit_tag" INNER JOIN "taggit_taggeditem" ON ("taggit_tag"."id" = "taggit_taggeditem"."tag_id") WHERE ("taggit_taggeditem"."content_type_id" = 7 AND "taggit_taggeditem"."object_id" = 11); args=(7, 11)
+(0.001) SELECT COUNT(*) AS "__count" FROM "comment_comment" WHERE "comment_comment"."article_id" = 11; args=(11,)
+"GET / HTTP/1.1" 200 13091
+"GET /static/layer/layer.js HTTP/1.1" 200 22116
+"GET /static/md_css/monokai.css HTTP/1.1" 200 4273
+"GET /media/article/20190914/4718A_moment_of_the_story-61294139.jpg HTTP/1.1" 200 18676
+"GET /static/popper/poper-1.15.0.js HTTP/1.1" 200 21165
+"GET /static/jquery/jquery-3.4.1.js HTTP/1.1" 200 88145
+"GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 140936
+"GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 51039
+"GET /media/article/20190914/4425%E6%98%9F%E9%99%8D%E3%82%8B%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9-62908647.png HTTP/1.1" 200 138060
+"GET /media/article/20190914/4729%E3%83%90%E3%82%B9%E5%81%9C-62081133.png HTTP/1.1" 200 233741
+"GET /static/layer/theme/default/layer.css?v=3.1.1 HTTP/1.1" 200 14367
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <URLPattern list> (admin:admin) 'admin/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>
+Exception while resolving variable 'name' in template 'unknown'.
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    resolver_match = resolver.resolve(request.path_info)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\urls\resolvers.py", line 527, in resolve
+    raise Resolver404({'tried': tried, 'path': new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLPattern '' [name='home']>], [<URLResolver <module 'password_reset.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\password_reset\\urls.py'> (None:None) 'password_reset/'>], [<URLResolver <module 'notifications.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\notifications\\urls.py'> (notifications:notifications) 'inbox/notifications/'>], [<URLResolver <module 'article.urls' from 'H:\\workplace\\my_blog\\article\\urls.py'> (article:article) 'article/'>], [<URLResolver <module 'userprofile.urls' from 'H:\\workplace\\my_blog\\userprofile\\urls.py'> (userprofile:userprofile) 'userprofile/'>], [<URLResolver <module 'comment.urls' from 'H:\\workplace\\my_blog\\comment\\urls.py'> (comment:comment) 'comment/'>], [<URLResolver <module 'notice.urls' from 'H:\\workplace\\my_blog\\notice\\urls.py'> (notice:notice) 'notice/'>], [<URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>], [<URLPattern '^media\/(?P<path>.*)$'>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 835, in _resolve_lookup
+    current = current[bit]
+TypeError: 'URLResolver' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 843, in _resolve_lookup
+    current = getattr(current, bit)
+AttributeError: 'URLResolver' object has no attribute 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 849, in _resolve_lookup
+    current = current[int(bit)]
+ValueError: invalid literal for int() with base 10: 'name'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\template\base.py", line 856, in _resolve_lookup
+    (bit, current))  # missing attribute
+django.template.base.VariableDoesNotExist: Failed lookup for key [name] in <URLResolver <module 'allauth.urls' from 'H:\\workplace\\my_blog\\venv\\lib\\site-packages\\allauth\\urls.py'> (None:None) 'accounts/'>
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2992
+"GET / HTTP/1.1" 200 13091
+"GET /static/md_css/monokai.css HTTP/1.1" 200 4273
+"GET /static/bootstrap/css/bootstrap.min.css HTTP/1.1" 200 140936
+"GET /media/article/20190914/4718A_moment_of_the_story-61294139.jpg HTTP/1.1" 200 18676
+"GET /media/article/20190914/4425%E6%98%9F%E9%99%8D%E3%82%8B%E3%82%AA%E3%82%A2%E3%82%B7%E3%82%B9-62908647.png HTTP/1.1" 200 138060
+"GET /static/jquery/jquery-3.4.1.js HTTP/1.1" 200 88145
+"GET /static/layer/layer.js HTTP/1.1" 200 22116
+"GET /static/popper/poper-1.15.0.js HTTP/1.1" 200 21165
+"GET /static/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 51039
+"GET /media/article/20190914/4729%E3%83%90%E3%82%B9%E5%81%9C-62081133.png HTTP/1.1" 200 233741
+"GET /static/layer/theme/default/layer.css?v=3.1.1 HTTP/1.1" 200 14367
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 2992
+"GET /article/article_detail/13 HTTP/1.1" 200 79935
+"GET /static/prism/prism.css HTTP/1.1" 304 0
+"GET /static/ckeditor/ckeditor/plugins/prism/lib/prism/prism_patched.min.js HTTP/1.1" 200 99483
+"GET /static/sticky_sidebar/jquery.sticky-sidebar.min.js HTTP/1.1" 200 12485
+Internal Server Error: /article/article_detail/99
+Traceback (most recent call last):
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\exception.py", line 35, in inner
+    response = get_response(request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 128, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "H:\workplace\my_blog\article\views.py", line 101, in article_detail
+    article = Article.objects.get(id=id)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\db\models\manager.py", line 82, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "H:\workplace\my_blog\venv\lib\site-packages\django\db\models\query.py", line 403, in get
+    self.model._meta.object_name
+article.models.DoesNotExist: Article matching query does not exist.
+"GET /article/article_detail/99 HTTP/1.1" 500 80600
+WARNING 2019-09-16 21:36:23,386 base 5884 1764 Not Found: /favicon.ico
