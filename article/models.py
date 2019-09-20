@@ -34,6 +34,9 @@ class Article(models.Model):
         blank=True
     )
 
+    # 点赞
+    likes = models.PositiveIntegerField(default=0)
+
     created_time = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
 

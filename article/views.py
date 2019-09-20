@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.conf import settings
 from django.db.models import Q
 from django.views.generic import ListView,DetailView
+from django.views import View
 from .models import Article,ArticleColumn
 from .form import ArticleForm
 from comment.models import Comment
@@ -37,6 +38,15 @@ class ArticleDetailView(DetailView):
     queryset = Article.objects.all()
     context_object_name = 'article'
     template_name = 'article/detail.html'
+
+
+# 点赞数 +1
+class IncreaseLikeView(View):
+    def post(self, request, *args, **kwargs):
+        article = Article.objects.get(id=kwargs.get('id'))
+        article.likes += 1
+        article.save()
+        return HttpResponse('success')
 
 
 # Create your views here.

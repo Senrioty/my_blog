@@ -47,6 +47,22 @@
                 <p>{{ article.content | safe }}</p>
             </div>
 
+            <!-- 点赞 -->
+            <div class="mt-4" style="text-align: center;">
+                <button class="btn btn-outline-danger" type="button"
+                        onclick="validate_is_like('{% url 'article:increase_likes' article.id %}', {{ article.id }}, {{ article.likes }})">
+                    <span>点赞</span>
+                    <span>
+                        <i class="fas fa-heart"></i>
+                    </span>
+                    <span id="likes_number">
+                        {{ article.likes }}
+                    </span>
+                </button>
+            </div>
+
+
+
             <!-- 发表评论 -->
             <hr>
             {% if user.is_authenticated %}
@@ -195,6 +211,7 @@
 
 {% block script %}
     <script src="{% static 'sticky_sidebar/jquery.sticky-sidebar.min.js' %}"></script>
+    <script src="{% static 'csrf.js' %}"></script>
     <script type="text/javascript">
         // 设置粘性侧边栏
         $('#sidebar').stickySidebar({
@@ -250,6 +267,7 @@
             $(modal_id).modal('show');
         }
 
+        // 二级跳转锚点的方法，但是不可用
         function post_reply_and_show_it(new_comment_id) {
             console.log("这是父页面"+new_comment_id)
             let next_url = '{% url 'article:article_detail' article.id %}';
@@ -260,10 +278,85 @@
 
             next_url = "http://127.0.0.1:8000" + next_url + "#comment_elem_" + new_comment_id;
 
-            console.log(next_url)
+            console.log(next_url);
             window.location.href= next_url
         }
 
+
+        // 点赞功能主函数
+        function validate_is_like(url, article_id, likes) {
+            // 取出 LocalStorage 中的数据
+            let storage = window.localStorage;
+            const storage_str_data = storage.getItem("my_blog_data");  //const定义的变量不可以修改，而且必须初始化
+            let storage_json_data = JSON.parse(storage_str_data);
+
+            // 若数据不存在，则创建空字典
+            if (! storage_json_data) {
+                storage_json_data = {};
+            }
+
+            // 检查当前文章是否已点赞，是则status=true
+            const status = check_status(storage_json_data, article_id);
+
+            if (status){
+                layer.msg("已经点过赞了哟~");
+
+                // 点过赞，那就直接退出函数
+                return ;
+            } else{
+                // 用 Jquery 找到点赞数量，并 +1
+                $("#likes_number").text(likes + 1).css('color', '#dc3545');
+            }
+
+            // 用ajax向后端发送post请求
+            $.post(
+                url,
+                {},
+                function (result) {
+                    if (result === 'success') {
+                        // 修改数据
+                        try {
+                            storage_json_data[article_id] = true;
+                        }catch (e) {
+                            window.LocalStorage.clear();
+                        }
+
+                        // 将字典转换为字符串，以便存储到LocalStorage
+                        const d = JSON.stringify(storage_json_data);
+                        // 存储点赞数据到 LocalStorage
+                        try {
+                            storage.setItem("my_blog_data", d);
+                        }catch (e) {
+                            // code 22错误 表示LocalStorage 空间满了
+                            if (e.code === 22){
+                                window.LocalStorage.clear();
+                                storage.setItem("my_blog_data", d);
+                            }
+                        }
+                    }else {
+                        layer.msg("与服务器通信失败...过一会再试试哈~")
+                    }
+                }
+            )
+        }
+
+
+        // 点赞功能辅函数
+        function check_status(data, article_id) {
+            // 尝试查询点赞状态
+            try {
+                if(article_id in data && data[article_id]){
+                    return true;
+                }else {
+                    return false;
+                }
+
+            } catch (e) {
+                window.LocalStorage.clear();
+                return false;
+            }
+
+        }
 
     </script>
 
